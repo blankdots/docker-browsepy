@@ -9,14 +9,14 @@ Uses https://github.com/tianon/gosu runs a `browsepy` as a non-root user.
 
 Simple way of building the container locally:
 ```shell
-docker build -t blankdots/browsepy
+docker build -t blankdots/docker-browsepy
 ```
 
 ### How to Run
 
 * Run with a local folder attached (recommended):
 ```shell
-docker run -p 5050:5050 -v /local/folder:/files blankdots/browsepy
+docker run -p 5050:5050 -v /local/folder:/files blankdots/docker-browsepy
 ```
 
 * Run as part of docker compose:
@@ -25,7 +25,7 @@ version: '2'
 services:
 
   browser:
-    image: blankdots/browsepy
+    image: blankdots/docker-browsepy
     volumes:
       - /local/folder:/files
     ports:
