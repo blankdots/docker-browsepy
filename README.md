@@ -31,3 +31,7 @@ services:
     ports:
       - '5050:5050'
 ```
+
+### How to access the files:
+
+Go to `http://hostname:5050`
