@@ -3,7 +3,7 @@
 Makes use of https://github.com/ergoithz/browsepy to browse files from a specific directory.
 Uses https://github.com/tianon/gosu runs a `browsepy` as a non-root user.
 
-`docker pull blankdots/browsepy`
+`docker pull blankdots/docker-browsepy`
 
 ### How to Build
 
