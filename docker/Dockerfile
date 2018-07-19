@@ -3,10 +3,7 @@ FROM python:3.6-alpine
 MAINTAINER Stefan Negru <stefan.negru@helsinki.fi>
 
 RUN apk add --update \
-    && apk add --no-cache build-base \
-    && apk add --no-cache linux-headers \
-    && apk add --no-cache bash \
-    && apk add --no-cache py-setuptools \
+    && apk add --no-cache build-base linux-headers bash py-setuptools \
     && rm -rf /var/cache/apk/*
 
 ENV GOSU_VERSION 1.10
