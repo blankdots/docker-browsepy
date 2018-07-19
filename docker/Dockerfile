@@ -33,18 +33,15 @@ RUN pip install backports.shutil-get-terminal-size scandir browsepy
 RUN addgroup -S nonroot \
     && adduser -S -g nonroot nonroot
 
-COPY entrypoint.sh /
-
-RUN mkdir files  \
-    && chmod +x /entrypoint.sh
+RUN mkdir files
 
 # setting environment variables for entrypoint script
 # setting also directories to be owned by the nonroot user
 ENV GOSU_USER nonroot:nonroot
-ENV GOSU_CHOWN /files
+# ENV GOSU_CHOWN /files
 
 VOLUME ["/files"]
 
 EXPOSE 5050
 
-ENTRYPOINT ["/entrypoint.sh", "--directory", "/files"]
+CMD ["gosu", "nonroot", "browsepy", "0.0.0.0", "5050", "--directory", "/files"]
