@@ -1,4 +1,4 @@
-FROM python:2.7.12-alpine
+FROM python:3.6-alpine
 
 MAINTAINER Stefan Negru <stefan.negru@helsinki.fi>
 
@@ -21,13 +21,14 @@ RUN set -x \
     && export GNUPGHOME="$(mktemp -d)" \
     && gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
     && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+    && pkill -9 gpg-agent \
     && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true \
     && apk del .gosu-deps
 
 RUN pip install --upgrade pip
-RUN pip install browsepy
+RUN pip install backports.shutil-get-terminal-size scandir browsepy
 
 RUN addgroup -S nonroot \
     && adduser -S -g nonroot nonroot
