@@ -47,7 +47,7 @@ metadata:
   labels:
     role: file-browser
   name: browsepy
-  namespace: lega
+  namespace: browser
 spec:
   selector:
     matchLabels:
@@ -72,8 +72,10 @@ spec:
               name: data
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: browsepy-data
+          # persistentVolumeClaim:
+          #  claimName: browsepy-data
+          hostPath:
+            path: /local/path
 ---
 apiVersion: v1
 kind: Service
@@ -81,6 +83,7 @@ metadata:
   name: browsepy
   labels:
     app: browsepy
+  namespace:browser
 spec:
   type: NodePort
   ports:
